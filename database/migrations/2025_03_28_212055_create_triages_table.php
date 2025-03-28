@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('triages', function (Blueprint $table) {
             $table->id();
+            $table->string('qualification');
             $table->timestamps();
         });
     }

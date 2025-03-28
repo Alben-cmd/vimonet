@@ -20,6 +20,16 @@ return new class extends Migration
             $table->string('phone');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('dob')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('about')->nullable();
+            $table->string('height')->nullable();
+            $table->string('weight')->nullable();
+            $table->text('contacts')->nullable();
+            $table->boolean('profile_completed')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
