@@ -16,4 +16,9 @@ class Complaint extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function appointment():HasOne
+    {
+        return $this->hasOne(Appointment::class);
+    }
 }

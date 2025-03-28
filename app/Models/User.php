@@ -21,8 +21,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
+        'role_id',
         'email',
+        'phone',
         'password',
     ];
 
@@ -58,6 +61,16 @@ class User extends Authenticatable
     public function medicalHistory(): HasOne
     {
         return $this->hasOne(MedicalHistory::class);
+    }
+
+    public function patient(): HasOne
+    {
+        return $this->hasOne(Patient::class);
+    }
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 
 }

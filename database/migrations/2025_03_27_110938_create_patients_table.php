@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('specialist_id')->constrained()->onDelete('cascade');
             $table->string('dob')->nullable();
             $table->string('gender')->nullable();
             $table->string('religion')->nullable();

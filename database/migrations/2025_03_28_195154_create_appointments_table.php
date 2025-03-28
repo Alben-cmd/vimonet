@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('complaints', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
-            $table->text('description');
-            $table->string('status')->default('Pending');
-            $table->foreignId('specialist_id')->nullable()->constrained()->onDelete('set null');
+            $table->date('date');
+            $table->time('start_time');
+            $table->time('finish_time');
+            $table->boolean('selected')->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('complaints');
+        Schema::dropIfExists('appointments');
     }
 };
