@@ -194,6 +194,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\Filament\AdminPanelProvider::class,
+        App\Providers\Filament\PatientPanelProvider::class,
+        App\Providers\Filament\SpecialistPanelProvider::class,
+        App\Providers\Filament\TriadPanelProvider::class,
         App\Providers\RouteServiceProvider::class,
 
     ],

@@ -12,13 +12,30 @@ class Complaint extends Model
 {
     use HasFactory;
 
+    protected $guarded = [''];
+
     public function patient():BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function appointment():HasOne
+    public function appointments():HasOne
     {
         return $this->hasOne(Appointment::class);
+    }
+
+    public function questionnaire():HasMany
+    {
+        return $this->hasMany(ComplaintQuestionnaire::class);
+    }
+
+    public function specialist():BelongsTo
+    {
+        return $this->belongsTo(Specialist::class);
+    }
+
+    public function patientSpecialist():HasOne
+    {
+        return $this->hasOne(PatientSpecialist::class);
     }
 }
