@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\VerifyTriad;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -25,6 +26,7 @@ class TriadPanelProvider extends PanelProvider
         return $panel
             ->id('triad')
             ->path('triad')
+            // ->databaseNotifications()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -51,6 +53,7 @@ class TriadPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                VerifyTriad::class,
             ]);
     }
 }

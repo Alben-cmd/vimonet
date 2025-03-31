@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\VerifyPatient;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -25,6 +26,11 @@ class PatientPanelProvider extends PanelProvider
         return $panel
             ->id('patient')
             ->path('patient')
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
+            ->profile()
+            // ->databaseNotifications()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -51,6 +57,7 @@ class PatientPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                VerifyPatient::class,
             ]);
     }
 }

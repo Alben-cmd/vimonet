@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\VerifySpecialist;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -25,6 +26,7 @@ class SpecialistPanelProvider extends PanelProvider
         return $panel
             ->id('specialist')
             ->path('specialist')
+            // ->databaseNotifications()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -51,6 +53,7 @@ class SpecialistPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                VerifySpecialist::class,
             ]);
     }
 }
