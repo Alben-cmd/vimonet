@@ -17,13 +17,20 @@ class ComplaintResource extends Resource
 {
     protected static ?string $model = Complaint::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right'; // Example icon
+    protected static ?string $navigationGroup = 'Patient Management';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Textarea::make('description')
+                    ->label('Complaint Description')
+                    ->required()
+                    ->maxLength(65535)
+                    ->columnSpan('full'),
             ]);
     }
 
@@ -31,7 +38,19 @@ class ComplaintResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('description')
+                    ->limit(50) // Limit description length in table
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'assigned' => 'success',
+                    })
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //
